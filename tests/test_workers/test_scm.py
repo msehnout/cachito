@@ -90,6 +90,8 @@ def test_clone_and_archive(
     else:
         mock_ugs.assert_not_called()
 
+    mock_clone.return_value.git.gc.assert_called_once_with('--prune=now')
+
 
 @pytest.mark.parametrize("gitsubmodule", [True, False])
 @mock.patch("tempfile.TemporaryDirectory")
